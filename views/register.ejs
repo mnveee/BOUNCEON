@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BounceOn</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="/user/register" method="POST">
+        <h2>Sign Up</h2>
+        <div class="input-field">
+          <input type="text" name="username" required />
+          <label>Enter username</label>
+        </div>
+        <div class="input-field">
+          <input type="text" name="jobtitle" required />
+          <label>Job title</label>
+        </div>
+        <div class="input-field">
+          <input type="text" name="company" required />
+          <label>Company</label>
+        </div>
+        <div class="input-field">
+          <input type="text" name="email" required />
+          <label>Enter email</label>
+        </div>
+        <div class="input-field">
+          <input type="password" name="password" required />
+          <label>Enter password</label>
+        </div>
+        <div class="input-field">
+          <input type="password" name="ConfirmPassword" required />
+          <label>Confirm password</label>
+        </div>
+        <div class="forget">
+          <label for="remember">
+            <input type="checkbox" id="remember" />
+            <p>Remember me</p>
+          </label>
+        </div>
+        <button class="button-c" type="submit"><span>Sign Up</span></button>
+      </form>
+    </div>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div id="stars1"></div>
+  </body>
+</html>

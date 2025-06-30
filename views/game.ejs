@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/game.css" />
+    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+    <script type="text/javascript" src="/p5.min.js"></script>
+    <script type="text/javascript" src="/FruitNinja.js"></script>
+    <script type="text/javascript" src="/Blade.js"></script>
+    <script type="text/javascript" src="/Fruit.js"></script>
+  </head>
+  <body>
+    <img style="top: 10px" src="/BounceOn.png" />
+    <button
+      id="playButton"
+      class="button"
+      style="left: 590px; top: 350px; width: 200px; height: 40px"
+    >
+      Start Game
+    </button>
+    <button
+      id="pauseButton"
+      class="button"
+      style="left: 900px; top: 120px; width: 80px; height: 30px; display: none"
+    >
+      Pause
+    </button>
+    <button
+      id="resumeButton"
+      class="button"
+      style="left: 900px; top: 120px; width: 80px; height: 30px; display: none"
+    >
+      Resume
+    </button>
+    <button
+      id="restartButton"
+      class="button"
+      style="left: 900px; top: 160px; width: 80px; height: 30px; display: none"
+    >
+      Restart
+    </button>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div id="stars1"></div>
+    <audio id="gameMusic" class="audi" controls loop>
+      <source src="game.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </body>
+</html>

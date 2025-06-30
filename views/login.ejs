@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BounceOn</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="/user/login" method="POST">
+        <h2>Login</h2>
+        <div class="input-field">
+          <input type="text" name="email" required />
+          <label>Enter email</label>
+        </div>
+        <div class="input-field">
+          <input type="password" name="password" required />
+          <label>Enter password</label>
+        </div>
+        <div class="forget">
+          <label for="remember">
+            <input type="checkbox" id="remember" />
+            <p>Remember me</p>
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button class="button-c" type="submit"><span>Log In</span></button>
+        <div class="note">
+          <p style="color: #fff">
+            NOTE: Please allow webcam after logging in to play the game.
+          </p>
+        </div>
+        <div class="register-link">
+          <p>
+            Don't have an account?
+            <a style="color: #ef4765" href="/user/register">Sign Up</a>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div id="stars1"></div>
+  </body>
+</html>
