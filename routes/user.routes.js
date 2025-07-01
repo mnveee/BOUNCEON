@@ -4,7 +4,6 @@ const { body, validationResult } = require("express-validator");
 const userModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const user = require("../models/user.model");
 
 router.get("/register", (req, res) => {
   res.render("register");
@@ -15,10 +14,11 @@ router.post(
   body("username").trim().notEmpty().withMessage("Username is required"),
   body("jobtitle").trim().notEmpty().withMessage("Job title is required"),
   body("company").trim().notEmpty().withMessage("Company is required"),
-  // Validate the input fields for registration
-  // Ensure that the username, job title, and company are not empty
-  body("email").trim().isEmail(),
-  body("password").trim().isLength({ min: 6 }),
+  body("email").trim().isEmail().withMessage("Invalid email"),
+  body("password")
+    .trim()
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters"),
   body("ConfirmPassword")
     .trim()
     .custom((value, { req }) => {
@@ -30,31 +30,33 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-        message: "Invalid input data",
-      });
+      console.log("Validation errors:", errors.array());
+      return res
+        .status(400)
+        .render("register", { error: errors.array()[0].msg });
     }
-    const { username, jobtitle, company, email, password, ConfirmPassword } =
-      req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const hashedConfirmPassword = await bcrypt.hash(ConfirmPassword, 10);
-
-    const newUser = await userModel.create({
-      username,
-      jobtitle,
-      company,
-      email,
-      password: hashedPassword,
-      ConfirmPassword: hashedConfirmPassword,
-    });
-
-    // user.save();
-    res.redirect("/user/login");
-    // Redirect to the login page after successful registration
-    // This will allow the user to log in with their newly created account
-    // The new user is created with the provided username, email, and hashed password
+    const { username, jobtitle, company, email, password } = req.body;
+    try {
+      console.log("Register attempt:", { username, email });
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = new User({
+        username,
+        jobtitle,
+        company,
+        email,
+        password: hashedPassword,
+      });
+      const savedUser = await newUser.save();
+      console.log("User saved:", savedUser);
+      res.redirect("/user/login");
+    } catch (err) {
+      console.error("Signup error:", err);
+      res
+        .status(500)
+        .render("register", {
+          error: "Error registering user: " + err.message,
+        });
+    }
   }
 );
 
