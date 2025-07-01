@@ -38,6 +38,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const user = mongoose.model("user", userSchema);
+const user = mongoose.model("users", userSchema);
 module.exports = user;
 // This code defines a Mongoose schema and model for a user in a MongoDB database.
